@@ -1,0 +1,59 @@
+# mission= {                    #Основной словарь где описываются задачи которые нужно выполнить
+#     "задача0": "описание0",
+#     "задача1": "описание1", 
+#     "задача2": "описание2",
+#     "задача3": "описание3"
+# }
+
+mission = dict()
+
+tasks = {  #Словарь где находятся задачи которые выполняются над основным словарем
+    "Вывести список задач": 0,
+    "Посмотреть подробности задачи": 1,
+    "Добавить задачу": 2,
+    "Удалить задачу": 3,
+    "Выход": 4,
+}
+
+while True: #Бесконечный цикл
+    for number in tasks.keys(): #Печатается словарь с выполняемыми задачами 
+        print(f"[{tasks.get(number)}] {number}")
+    
+    number_of_task=int(input("Пожалуйста, введите соответствующую цифру: ")) #Выбор выолняемой задачи 
+    
+
+    if number_of_task == 0: 
+        def print_tasks(dictionary: dict): #Функция для печати только задач основного словаря
+        for task in dictionary.keys():
+            print(f"{task}")
+        print_tasks(mission)
+        print("-"*42)
+        
+    elif number_of_task == 1:
+        def print_description(dictionary: dict): #Функция которая печатает описание вводимой задачи из осн. словаря
+            number_t=str(input("Пожалуйста введите задачу: "))
+            if number_t in dictionary:
+                print(dictionary[number_t])
+            else:
+                print("Такой задачи нет")
+        print_description(mission)         
+        print("-"*42)
+
+
+    elif number_of_task == 2: #Функция которая добавляет новую задачу и ее описание в словарь
+        def new_task(dictionary: dict):
+            name =str(input("Введите название новой задачи: "))
+            description =str(input("Введите описание новой задачи: "))
+            dictionary[name] = description
+        new_task(mission)    
+
+    elif number_of_task == 3: #Функция которая удаляет задачу
+        appellation=str(input("Введите название задачи: "))
+        if appellation in mission:
+            del mission[appellation]
+        else:
+            print("Такой задачи нет")
+    
+    elif number_of_task == 4: #Выход 
+        print("До связи")
+        break
